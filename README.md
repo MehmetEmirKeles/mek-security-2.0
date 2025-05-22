@@ -1,4 +1,4 @@
-# MEK Security 🔒
+# MEK Security 2.0 🔒
 
 A lightweight terminal-based network defense tool written in pure Bash.  
 It detects MITM attacks, monitors suspicious traffic, enables/disables firewall, manages logs, and sends alerts via email.  

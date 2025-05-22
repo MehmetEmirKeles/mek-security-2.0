@@ -35,7 +35,7 @@ chmod +x mek-security.sh
 ./mek-security.sh
 ```
 
-# MEK Security 🔒
+# MEK Security 2.0 🔒
 Bash ile yazılmış hafif ve terminal tabanlı bir ağ güvenlik aracıdır.
 MITM saldırılarını algılar, şüpheli trafiği izler, güvenlik duvarını yönetir, logları temizler ve e-posta ile uyarı gönderir.
 İngilizce ve Türkçe dillerini destekler, etkileşimli bir terminal menüsü içerir.

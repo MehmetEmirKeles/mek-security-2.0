@@ -16,18 +16,6 @@ attacker_monitor_pid=""
 CONFIG_FILE="$HOME/.mekos_config"
 LOG_FILE="$HOME/.mekos_saldirganlar.log"
 
-# === Dil Seçimi ===
-choose_language() {
-    echo -e "Please select language option.\nLütfen dil seçeneğinizi seçin."
-    echo -e "[1] Türkçe\n[2] English"
-    read -p "Seçiminiz / Your choice (1-2): " lang_choice
-    case $lang_choice in
-        1) lang="tr" ;;
-        2) lang="en" ;;
-        *) echo "Geçersiz seçim / Invalid choice. Defaulting to Turkish."; lang="tr" ;;
-    esac
-}
-
 # === İlk Kurulum ve Ayar Yükleme ===
 load_or_create_config() {
     if [ ! -f "$CONFIG_FILE" ]; then
@@ -56,21 +44,45 @@ load_or_create_config() {
     source "$CONFIG_FILE"
     gmail_password_decoded=$(echo "$gmail_password" | base64 --decode)
 }
-# === E-Posta Gönderme Fonksiyonu (Dil destekli) ===
+
+# === E-Posta Ayarlarını Güncelle ===
+update_email_config() {
+    echo -e "${CYAN}E-posta uyarı sistemi aktif edilsin mi? (e/h): ${RESET}"
+    read -r use_email
+    if [[ "$use_email" == "e" ]]; then
+        read -p "Gmail adresiniz: " gmail_address
+        echo -e "${CYAN}Gmail şifresini gizlemek ister misiniz? (e/h): ${RESET}"
+        read -r hide_pass
+        if [[ "$hide_pass" == "e" ]]; then
+            read -s -p "Gmail uygulama şifreniz (gizli): " gmail_password
+            echo
+        else
+            read -p "Gmail uygulama şifreniz (gözükecek): " gmail_password
+        fi
+        read -p "Hedef e-posta adresi: " receiver_email
+        echo "email_enabled=true" > "$CONFIG_FILE"
+        echo "gmail_address=$gmail_address" >> "$CONFIG_FILE"
+        echo "gmail_password=$(echo "$gmail_password" | base64)" >> "$CONFIG_FILE"
+        echo "receiver_email=$receiver_email" >> "$CONFIG_FILE"
+    else
+        echo "email_enabled=false" > "$CONFIG_FILE"
+    fi
+    chmod 600 "$CONFIG_FILE"
+    source "$CONFIG_FILE"
+    gmail_password_decoded=$(echo "$gmail_password" | base64 --decode)
+    echo -e "${GREEN}Ayarlar güncellendi.${RESET}"
+    read -p "Devam etmek için Enter..."
+}
+
+# === E-Posta Gönderme Fonksiyonu ===
 send_email_alert() {
     if [[ "$email_enabled" != "true" ]]; then return; fi
-    local subject body
-    if [[ "$lang" == "tr" ]]; then
-        subject="Saldırgan Tespit Edildi!"
-        body="Cihazınızda M.I.T.M saldırısı tespit edildi ve engellendi.\nSaldırgan cihazın MAC adresi: $attacker_mac\nIP adresi: $attacker_ip\nİyi günler."
-    else
-        subject="Attacker Detected!"
-        body="M.I.T.M attack detected and blocked on your device.\nAttacking device MAC address: $attacker_mac\nIP address: $attacker_ip\nHave a nice day."
-    fi
+    local subject="$1"
+    local body="$2"
     echo -e "Subject: $subject\n\n$body" | msmtp --host=smtp.gmail.com --port=587 \
         --auth=on --tls=on \
         --user="$gmail_address" \
-        --from="$gmail_address" \
+	--from="$gmail_address" \
         --passwordeval="echo $gmail_password_decoded" \
         "$receiver_email"
 }
@@ -127,6 +139,7 @@ main_menu() {
         esac
     done
 }
+
 firewall_menu() {
     clear; big_welcome
     echo -e "${CYAN}1. Firewall Aç\n2. Firewall Kapat\n3. Geri${RESET}"
@@ -202,7 +215,7 @@ monitor_attacker() {
         [ -z "$attacker_mac" ] && attacker_mac="MAC not found"
         echo -e "${MAGENTA}Saldırgan bulundu ve sisteme erişimi engellendi: IP: $attacker_ip, MAC: $attacker_mac${RESET}"
         echo "[$(date)] IP: $attacker_ip | MAC: $attacker_mac" >> "$LOG_FILE"
-        send_email_alert
+        send_email_alert "Saldırgan Tespit Edildi!" "IP: $attacker_ip\nMAC: $attacker_mac"
         sudo iptables -A INPUT -s "$attacker_ip" -j DROP
     done
 }
@@ -262,6 +275,5 @@ exit_program() {
 }
 
 # === Başlat ===
-choose_language
 load_or_create_config
 main_menu

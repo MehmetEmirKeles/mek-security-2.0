@@ -35,4 +35,40 @@ chmod +x mek-security.sh
 ./mek-security.sh
 ```
 
+# MEK Security 🔒
+Bash ile yazılmış hafif ve terminal tabanlı bir ağ güvenlik aracıdır.
+MITM saldırılarını algılar, şüpheli trafiği izler, güvenlik duvarını yönetir, logları temizler ve e-posta ile uyarı gönderir.
+İngilizce ve Türkçe dillerini destekler, etkileşimli bir terminal menüsü içerir.
 
+## 💡 Özellikler
+
+🧠 MITM saldırı algılama
+
+📦 Paket izleme
+
+🔥 Güvenlik duvarı yönetimi (aktif/pasif)
+
+📧 Gmail üzerinden e-posta uyarıları
+
+📜 Log dosyası yönetimi
+
+🌐 Çoklu dil desteği: Türkçe / İngilizce
+
+🧱 Basit ve etkileşimli terminal arayüzü
+
+
+## 📥 Kurulum ve Kullanım (Türkçe)
+Aşağıdaki komutları sırasıyla çalıştır:
+
+```
+git clone https://github.com/MehmetEmirKeles/mek-security-2.0.git
+```
+```
+cd mek-security-2.0
+```
+```
+chmod +x mek-security.sh
+```
+```
+./mek-security.sh
+```

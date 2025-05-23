@@ -56,6 +56,7 @@ MITM saldırılarını algılar, şüpheli trafiği izler, güvenlik duvarını 
 
 🧱 Basit ve etkileşimli terminal arayüzü
 
+![image_alt](https://github.com/MehmetEmirKeles/mek-security-2.0/blob/main/TR.png?raw=true)
 
 ## 📥 Kurulum ve Kullanım (Türkçe)
 Aşağıdaki komutları sırasıyla çalıştır:

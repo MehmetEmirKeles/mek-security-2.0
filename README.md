@@ -92,7 +92,7 @@ chmod +x mek-security.sh
 ./mek-security.sh
 ```
 
-📌 GMAIL UYGULAMA PAROLASI NASIL ALINIR? (OPSIYONEL AMA GMAIL ÖZELLĞINI KULLANMAK IÇIN GEREKLI)
+### 📌 GMAIL UYGULAMA PAROLASI NASIL ALINIR? (OPSIYONEL AMA GMAIL ÖZELLĞINI KULLANMAK IÇIN GEREKLI)
 
 1. https://myaccount.google.com adresine gidin ve Google hesabınıza giriş yapın.
 2. Sol menüden “Güvenlik” sekmesine tıklayın.

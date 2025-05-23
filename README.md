@@ -4,7 +4,7 @@ A lightweight terminal-based network defense tool written in pure Bash.
 It detects MITM attacks, monitors suspicious traffic, enables/disables firewall, manages logs, and sends alerts via email.  
 Supports both English and Turkish languages with an interactive terminal menu.
 
----
+
 
 ## 💡 Features
 
@@ -16,7 +16,7 @@ Supports both English and Turkish languages with an interactive terminal menu.
 - 🌐 Multilingual support: English / Turkish  
 - 🧱 Simple and interactive terminal interface  
 
----
+![image_alt](https://github.com/MehmetEmirKeles/mek-security-2.0/blob/main/eng.png?raw=true)
 
 ## 📦 Installation & Usage (English)
 
@@ -56,6 +56,7 @@ MITM saldırılarını algılar, şüpheli trafiği izler, güvenlik duvarını 
 
 🧱 Basit ve etkileşimli terminal arayüzü
 
+![image_alt](https://github.com/MehmetEmirKeles/mek-security-2.0/blob/main/TR.png?raw=true)
 
 ## 📥 Kurulum ve Kullanım (Türkçe)
 Aşağıdaki komutları sırasıyla çalıştır:

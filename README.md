@@ -34,6 +34,56 @@ chmod +x mek-security.sh
 ```
 ./mek-security.sh
 ```
+## ✅ Requirements
+
+### 🧱 1. Operating System
+Any modern Linux distribution. Tested on:
+✅ Ubuntu 20.04+ / Debian 11+
+
+✅ Arch Linux / Garuda Linux - Manjaro Linux - EndeavourOS
+
+### 🔧 2. Essential Packages & Commands
+
+| Required Tool/Command | Purpose                                   | Ubuntu/Debian                  | Arch/Garuda                  |
+| --------------------- | ----------------------------------------- | ------------------------------ | ---------------------------- |
+| `bash`                | Script interpreter                        | Built-in                       | Built-in                     |
+| `coreutils`           | Provides `base64`                         | Built-in                       | Built-in                     |
+| `iproute2`            | Provides `ip` command                     | ✅ `sudo apt install iproute2`  | ✅ `sudo pacman -S iproute2`  |
+| `net-tools`           | Legacy tools like `arp`, `ifconfig`       | ✅ `sudo apt install net-tools` | ✅ `sudo pacman -S net-tools` |
+| `dsniff`              | Required for `arpspoof`                   | ✅ `sudo apt install dsniff`    | ✅ `yay -S dsniff`            |
+| `tcpdump`             | Packet sniffer (optional but recommended) | ✅ `sudo apt install tcpdump`   | ✅ `sudo pacman -S tcpdump`   |
+| `iptables`            | For blocking attacker IP/MAC              | ✅ `sudo apt install iptables`  | ✅ *Keep `iptables-nft`!*     |
+| `msmtp`               | SMTP client to send Gmail alerts          | ✅ `sudo apt install msmtp`     | ✅ `sudo pacman -S msmtp`     |
+
+✅ Installation Steps (Ubuntu/Debian)
+```
+sudo apt update
+```
+```
+sudo apt install bash coreutils iproute2 net-tools dsniff tcpdump iptables msmtp
+```
+✅ Installation Steps (Arch/Garuda)
+```
+sudo pacman -S bash coreutils iproute2 net-tools tcpdump iptables msmtp
+```
+```
+yay -S dsniff
+```
+
+### 📧 3. Email Notification Prerequisites
+
+A valid Gmail address
+
+Gmail App Password (stored securely)
+
+Receiver email address
+
+### 🔐 4. Permission Requirements
+MEK Security requires administrative privileges to monitor and control network traffic. Always run it with sudo:
+```
+sudo ./mek-security.sh
+```
+
 
 ### 📌 HOW TO GET A GMAIL APP PASSWORD? (OPTIONAL BUT REQUIRED TO USE GMAIL FEATURE)
 
@@ -91,7 +141,7 @@ chmod +x mek-security.sh
 ```
 ./mek-security.sh
 ```
-✅ Gereksinimler
+## ✅ Gereksinimler
 
 ### 🧱 1. İşletim Sistemi
 Linux dağıtımı (test edilenler):
@@ -120,7 +170,7 @@ sudo apt update
 ```
 sudo apt install bash coreutils iproute2 net-tools dsniff tcpdump iptables msmtp
 ```
-✅ Kurulum Adımları (Örnek: Arch/Garuda)
+### ✅ Kurulum Adımları (Örnek: Arch/Garuda)
 ```
 sudo pacman -S bash coreutils iproute2 net-tools tcpdump iptables msmtp
 ```

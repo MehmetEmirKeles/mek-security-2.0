@@ -91,6 +91,56 @@ chmod +x mek-security.sh
 ```
 ./mek-security.sh
 ```
+✅ Gereksinimler
+
+### 🧱 1. İşletim Sistemi
+Linux dağıtımı (test edilenler):
+
+✅ Ubuntu 20.04+ / Debian 11+
+
+✅ Arch Linux / Garuda Linux - Manjaro Linux - EndeavourOS
+
+### 🔧 2. Temel Paketler ve Komutlar
+
+| Gerekli Paket/Komut | Açıklama                                 | Ubuntu/Debian                  | Arch/Garuda                       |
+| ------------------- | ---------------------------------------- | ------------------------------ | --------------------------------- |
+| `bash`              | Script çalıştırma kabuğu                 | Varsayılan                     | Varsayılan                        |
+| `coreutils`         | `base64` komutu için                     | Varsayılan                     | Varsayılan                        |
+| `iproute2`          | `ip` komutu için                         | ✅ `sudo apt install iproute2`  | ✅ `sudo pacman -S iproute2`       |
+| `net-tools`         | `arp`, `ifconfig` gibi eski komutlar     | ✅ `sudo apt install net-tools` | ✅ `sudo pacman -S net-tools`      |
+| `dsniff`            | `arpspoof` aracı için                    | ✅ `sudo apt install dsniff`    | ✅ `yay -S dsniff`                 |
+| `tcpdump`           | Ağ dinleme için (opsiyonel ama önerilir) | ✅ `sudo apt install tcpdump`   | ✅ `sudo pacman -S tcpdump`        |
+| `iptables`          | Firewall yönetimi                        | ✅ `sudo apt install iptables`  | ✅ *`iptables-nft` yüklü kalmalı!* |
+| `msmtp`             | Gmail SMTP ile e-posta göndermek için    | ✅ `sudo apt install msmtp`     | ✅ `sudo pacman -S msmtp`          |
+
+### ✅ Kurulum Adımları (Örnek: Ubuntu)
+```
+sudo apt update
+```
+```
+sudo apt install bash coreutils iproute2 net-tools dsniff tcpdump iptables msmtp
+```
+✅ Kurulum Adımları (Örnek: Arch/Garuda)
+```
+sudo pacman -S bash coreutils iproute2 net-tools tcpdump iptables msmtp
+```
+```
+yay -S dsniff
+```
+
+### 📧 3. E-posta Bildirimi için Gerekli Bilgiler
+- Gmail adresi
+
+- Gmail uygulama şifresi (gizli olarak saklanır)
+
+- Alıcı e-posta adresi
+
+
+### 🔐 4. Yetki Gereksinimi
+MEK Security, sistem düzeyinde ağ ve güvenlik kontrolü yaptığı için sudo yetkisi ile çalıştırılmalıdır:
+```
+sudo ./mek-security.sh
+```
 
 ### 📌 GMAIL UYGULAMA PAROLASI NASIL ALINIR? (OPSIYONEL AMA GMAIL ÖZELLĞINI KULLANMAK IÇIN GEREKLI)
 

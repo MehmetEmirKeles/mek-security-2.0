@@ -331,6 +331,16 @@ start_mitm_monitoring() {
     fi
 }
 
+stop_mitm_monitoring() {
+    kill "$mitm_pid" 2>/dev/null; mitm_pid=""
+    [[ -n "$attacker_monitor_pid" ]] && kill "$attacker_monitor_pid" 2>/dev/null; attacker_monitor_pid=""
+    if [[ "$lang" == "tr" ]]; then
+        echo -e "${RED}MITM izleme durduruldu.${RESET}"
+    else
+        echo -e "${RED}MITM monitoring stopped.${RESET}"
+    fi
+}
+
 start_packet_tracking() {
     tracking_loop &
     tracking_pid=$!
@@ -346,11 +356,11 @@ fi
 stop_packet_tracking() {
     kill "$tracking_pid" 2>/dev/null; tracking_pid=""
     [[ -n "$attacker_monitor_pid" ]] && kill "$attacker_monitor_pid" 2>/dev/null; attacker_monitor_pid=""
-if [[ "$lang" == "tr" ]]; then
-    echo -e "${RED}MITM izleme durduruldu.${RESET}"
-else
-    echo -e "${RED}MITM monitoring stopped.${RESET}"
-fi
+    if [[ "$lang" == "tr" ]]; then
+        echo -e "${RED}Paket izleme durduruldu.${RESET}"
+    else
+        echo -e "${RED}Packet tracking stopped.${RESET}"
+    fi
 }
 
 mitm_loop() {
